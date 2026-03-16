@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=FCC624&height=200&section=header&text=SysAdmin%20Hub&fontSize=50&fontColor=ffffff&animation=twinkling&desc=David%20López%20%7C%20ASIR&descSize=20&descAlign=50&descAlignY=65&descColor=ffffff" alt="Sistemas Banner">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=FCC624&height=200&section=header&text=SysAdmin%20Hub&fontSize=50&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=David%20Lopez%20%7C%20ASIR&descSize=20&descAlign=50&descAlignY=62&descColor=ffffff" alt="Sistemas Banner">
 
 **Configuración de servidores, virtualización, gestión de usuarios y automatización con scripting.**
 
