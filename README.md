@@ -16,8 +16,6 @@
 
 Este espacio sirve como biblioteca de mis prácticas, guías y **scripts de automatización** relacionados con la Administración de Sistemas Operativos. Es parte de mi evolución como técnico **ASIR** y futuro perfil enfocado en Ciberseguridad.
 
-Aquí demuestro mi capacidad para levantar infraestructuras desde cero, interconectar servicios (Active Directory, DNS, File Servers) y optimizar tareas repetitivas mediante **PowerShell** y **Bash**.
-
 ---
 
 ## 📂 Estructura del repositorio
@@ -53,7 +51,7 @@ Si vas a probar alguno de mis scripts de PowerShell o Bash, **asegúrate de leer
 
 <div align="center">
 
-*"Un administrador que automatiza, es un administrador con tiempo para innovar."*
+*"Un sistema que se rompe bajo control, es un servicio que no falla ante el usuario."*
 
 **[⬅️ Volver a mi perfil principal](https://github.com/davidlpizano/davidlpizano)**
 
