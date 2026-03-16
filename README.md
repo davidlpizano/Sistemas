@@ -1,7 +1,5 @@
 <div align="center">
 
-# 🖥️ Administración de Sistemas - ASIR
-
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0078D6&height=200&section=header&text=SysAdmin%20Hub&fontSize=50&fontColor=ffffff&animation=fadeIn" alt="Sistemas Banner">
 
 **Configuración de servidores, virtualización, gestión de usuarios y automatización con scripting.**
