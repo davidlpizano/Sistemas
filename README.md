@@ -36,17 +36,16 @@ Internet
     ▼
 ┌─────────────────────┐
 │   Router / Firewall  │
-│   192.168.1.1        │
 └────────┬────────────┘
          │
          ▼
 ┌─────────────────────────────────────────────┐
-│          UGREEN NAS — 192.168.1.3           │
+│              UGREEN NAS (Docker)            │
 │                                             │
 │  ┌─────────────────────────────────────┐    │
 │  │  Nginx Proxy Manager (NPM)         │    │
-│  │  Wildcard SSL: *.dlplab.es          │    │
-│  │  Reverse proxy → todos los servicios│    │
+│  │  Wildcard SSL + Reverse Proxy      │    │
+│  │  Subdominios → todos los servicios  │    │
 │  └─────────────────────────────────────┘    │
 │                                             │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
@@ -78,33 +77,33 @@ Internet
 
 ### 📋 Stack de servicios
 
-| Servicio | Función | Acceso |
-| :--- | :--- | :--- |
-| **Nginx Proxy Manager** | Reverse proxy + SSL wildcard `*.dlplab.es` | `npm.dlplab.es` |
-| **Pi-hole** | DNS server + bloqueador de publicidad para toda la red | `pihole.dlplab.es` |
-| **Homepage** | Dashboard centralizado de todos los servicios | `home.dlplab.es` |
-| **Nextcloud** | Nube privada (archivos, calendario, contactos) | `cloud.dlplab.es` |
-| **Vaultwarden** | Gestor de contraseñas (compatible Bitwarden) | `vault.dlplab.es` |
-| **Grafana** | Dashboards de monitorización (Node Exporter, Prometheus) | `grafana.dlplab.es` |
-| **Prometheus** | Recolector de métricas del sistema | `192.168.1.3:9090` |
-| **Node Exporter** | Exportador de métricas del hardware/OS | — |
-| **Uptime Kuma** | Monitorización de disponibilidad de servicios | `uptime.dlplab.es` |
-| **Firefly III** | Gestión de finanzas personales | `firefly.dlplab.es` |
-| **Plex** | Servidor multimedia (películas, series) | `plex.dlplab.es` |
-| **Navidrome** | Servidor de música (compatible Subsonic) | `music.dlplab.es` |
-| **Speedtest Tracker** | Historial de velocidad de Internet | `speedtest.dlplab.es` |
-| **qBittorrent** | Cliente de descargas | `qbit.dlplab.es` |
-| **Home Assistant** | Domótica y automatización del hogar | `ha.dlplab.es` |
-| **n8n** | Automatización de workflows (bajo demanda) | `n8n.dlplab.es` |
-| **Minecraft** | Servidor de juego (bajo demanda) | — |
+| Servicio | Función |
+| :--- | :--- |
+| **Nginx Proxy Manager** | Reverse proxy + certificado SSL wildcard |
+| **Pi-hole** | DNS server + bloqueador de publicidad para toda la red |
+| **Homepage** | Dashboard centralizado de todos los servicios |
+| **Nextcloud** | Nube privada (archivos, calendario, contactos) |
+| **Vaultwarden** | Gestor de contraseñas (compatible Bitwarden) |
+| **Grafana** | Dashboards de monitorización (Node Exporter, Prometheus) |
+| **Prometheus** | Recolector de métricas del sistema |
+| **Node Exporter** | Exportador de métricas del hardware/OS |
+| **Uptime Kuma** | Monitorización de disponibilidad de servicios |
+| **Firefly III** | Gestión de finanzas personales |
+| **Plex** | Servidor multimedia (películas, series) |
+| **Navidrome** | Servidor de música (compatible Subsonic) |
+| **Speedtest Tracker** | Historial de velocidad de Internet |
+| **qBittorrent** | Cliente de descargas |
+| **Home Assistant** | Domótica y automatización del hogar |
+| **n8n** | Automatización de workflows (bajo demanda) |
+| **Minecraft** | Servidor de juego (bajo demanda) |
 
 ### 🔒 Seguridad aplicada
 
-- Certificado SSL wildcard para `*.dlplab.es` gestionado por NPM
+- Certificado SSL wildcard gestionado por NPM para todos los subdominios
 - Pi-hole como DNS local filtrando publicidad y telemetría a nivel de red
 - Vaultwarden como gestor de contraseñas centralizado
 - Acceso a servicios solo por subdominios HTTPS (no puertos expuestos directamente)
-- Prometheus sin acceso público (solo IP interna, sin autenticación externa)
+- Prometheus restringido a red interna, sin acceso público
 
 ### 📊 Monitorización
 
