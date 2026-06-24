@@ -1,156 +1,195 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=FCC624&height=200&section=header&text=SysAdmin%20Hub&fontSize=50&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=David%20Lopez%20%7C%20ASIR&descSize=20&descAlign=50&descAlignY=62&descColor=ffffff" alt="Sistemas Banner">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:FCC624,100:FF6F00&height=220&section=header&text=SysAdmin%20Hub&fontSize=55&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=David%20Lopez%20%7C%20ASIR&descSize=20&descAlign=50&descAlignY=60&descColor=ffffff" alt="Sistemas Banner" width="100%">
 
-**Configuración de servidores, virtualización, gestión de usuarios, automatización con scripting y homelab en producción.**
+**Administracion de sistemas, virtualizacion, scripting y homelab en produccion con +15 servicios Docker.**
 
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](#)
-[![Windows Server](https://img.shields.io/badge/Windows_Server-0078D6?style=for-the-badge&logo=windows&logoColor=white)](#)
-[![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](#)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#)
-[![Nginx](https://img.shields.io/badge/Nginx_Proxy_Manager-009639?style=for-the-badge&logo=nginx&logoColor=white)](#)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)](#)
+[![Windows Server](https://img.shields.io/badge/Windows_Server-0078D6?style=flat-square&logo=windows&logoColor=white)](#)
+[![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat-square&logo=powershell&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](#)
+[![Nginx](https://img.shields.io/badge/Nginx_Proxy_Manager-009639?style=flat-square&logo=nginx&logoColor=white)](#)
+[![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)](#)
 
 </div>
 
----
+<br/>
 
 ## 🎯 Sobre este repositorio
 
-Este espacio sirve como biblioteca de mis prácticas, guías y **scripts de automatización** relacionados con la Administración de Sistemas Operativos. Es parte de mi evolución como técnico **ASIR** y futuro perfil enfocado en Ciberseguridad.
+Biblioteca de practicas, guias y **scripts de automatizacion** para la administracion de sistemas operativos. Parte de mi formacion en **ASIR** con orientacion a Ciberseguridad.
 
-Aquí demuestro mi capacidad para levantar infraestructuras desde cero, interconectar servicios (Active Directory, DNS, File Servers) y optimizar tareas repetitivas mediante **PowerShell** y **Bash**.
+Aqui demuestro mi capacidad para levantar infraestructuras desde cero, interconectar servicios (Active Directory, DNS, File Servers) y optimizar tareas repetitivas mediante **PowerShell** y **Bash**. Ademas, mantengo un **homelab en produccion** sobre un NAS UGREEN con mas de 15 servicios Docker auto-alojados, accesibles por subdominios con SSL y monitorizados en tiempo real.
 
-Además, mantengo un **homelab en producción** sobre un NAS UGREEN con más de 15 servicios Docker auto-alojados, accesibles por subdominios con SSL y monitorizados en tiempo real.
+<br/>
 
----
+## 🏠 Homelab — Infraestructura real
 
-## 🏠 Homelab — Infraestructura real en producción
+<div align="center">
 
-Mi homelab corre sobre un **UGREEN NAS** con Docker, gestionado a través de la interfaz nativa del NAS. Todos los servicios están desplegados como contenedores Docker con persistencia de datos en volúmenes.
+Mi homelab corre sobre un **UGREEN NAS** con Docker. Todos los servicios estan desplegados como contenedores con persistencia en volumenes.
 
-### 🌐 Arquitectura de red
+</div>
+
+<br/>
+
+<details>
+<summary><b>🌐 Ver arquitectura de red</b></summary>
+<br/>
 
 ```
 Internet
     │
     ▼
-┌─────────────────────┐
-│   Router / Firewall  │
-└────────┬────────────┘
-         │
-         ▼
-┌─────────────────────────────────────────────┐
-│              UGREEN NAS (Docker)            │
-│                                             │
-│  ┌─────────────────────────────────────┐    │
-│  │  Nginx Proxy Manager (NPM)         │    │
-│  │  Wildcard SSL + Reverse Proxy      │    │
-│  │  Subdominios → todos los servicios  │    │
-│  └─────────────────────────────────────┘    │
-│                                             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
-│  │ Pi-hole  │ │ Grafana  │ │ Prometheus│   │
-│  │   DNS    │ │ Dashboards│ │ Métricas │   │
-│  └──────────┘ └──────────┘ └──────────┘    │
-│                                             │
-│  ┌──────────┐ ┌──────────┐ ┌───────────┐   │
-│  │Nextcloud │ │Vaultwarden│ │Uptime Kuma│  │
-│  │  Cloud   │ │Contraseñas│ │Monitoreo  │  │
-│  └──────────┘ └──────────┘ └───────────┘   │
-│                                             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
-│  │Firefly III│ │  Plex   │ │Navidrome │    │
-│  │ Finanzas │ │  Media   │ │  Música  │    │
-│  └──────────┘ └──────────┘ └──────────┘    │
-│                                             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
-│  │Homepage  │ │Speedtest │ │qBittorrent│   │
-│  │Dashboard │ │ Tracker  │ │ Descargas│    │
-│  └──────────┘ └──────────┘ └──────────┘    │
-│                                             │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
-│  │Home Asst.│ │   n8n    │ │Minecraft │    │
-│  │  Domótica│ │Automatiz.│ │  Server  │    │
-│  └──────────┘ └──────────┘ └──────────┘    │
-└─────────────────────────────────────────────┘
+┌──────────────────────┐
+│   Router / Firewall   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────────────────────────────────┐
+│               UGREEN NAS (Docker)                │
+│                                                  │
+│  ┌────────────────────────────────────────────┐  │
+│  │  Nginx Proxy Manager (NPM)                 │  │
+│  │  Wildcard SSL + Reverse Proxy              │  │
+│  │  Subdominios HTTPS → todos los servicios   │  │
+│  └────────────────────────────────────────────┘  │
+│                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐    │
+│  │  Pi-hole  │  │  Grafana  │  │Prometheus │    │
+│  │    DNS    │  │ Dashboards│  │ Metricas  │    │
+│  └───────────┘  └───────────┘  └───────────┘    │
+│                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐    │
+│  │ Nextcloud │  │Vaultwarden│  │Uptime Kuma│    │
+│  │   Cloud   │  │Contraseñas│  │ Monitoreo │    │
+│  └───────────┘  └───────────┘  └───────────┘    │
+│                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐    │
+│  │Firefly III│  │   Plex    │  │ Navidrome │    │
+│  │ Finanzas  │  │   Media   │  │  Musica   │    │
+│  └───────────┘  └───────────┘  └───────────┘    │
+│                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐    │
+│  │ Homepage  │  │ Speedtest │  │qBittorrent│    │
+│  │ Dashboard │  │  Tracker  │  │ Descargas │    │
+│  └───────────┘  └───────────┘  └───────────┘    │
+│                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐    │
+│  │Home Assist│  │    n8n    │  │ Minecraft │    │
+│  │ Domotica  │  │ Automatiz.│  │  Server   │    │
+│  └───────────┘  └───────────┘  └───────────┘    │
+└──────────────────────────────────────────────────┘
 ```
+
+</details>
+
+<br/>
 
 ### 📋 Stack de servicios
 
-| Servicio | Función |
-| :--- | :--- |
-| **Nginx Proxy Manager** | Reverse proxy + certificado SSL wildcard |
-| **Pi-hole** | DNS server + bloqueador de publicidad para toda la red |
-| **Homepage** | Dashboard centralizado de todos los servicios |
-| **Nextcloud** | Nube privada (archivos, calendario, contactos) |
-| **Vaultwarden** | Gestor de contraseñas (compatible Bitwarden) |
-| **Grafana** | Dashboards de monitorización (Node Exporter, Prometheus) |
-| **Prometheus** | Recolector de métricas del sistema |
-| **Node Exporter** | Exportador de métricas del hardware/OS |
-| **Uptime Kuma** | Monitorización de disponibilidad de servicios |
-| **Firefly III** | Gestión de finanzas personales |
-| **Plex** | Servidor multimedia (películas, series) |
-| **Navidrome** | Servidor de música (compatible Subsonic) |
-| **Speedtest Tracker** | Historial de velocidad de Internet |
-| **qBittorrent** | Cliente de descargas |
-| **Home Assistant** | Domótica y automatización del hogar |
-| **n8n** | Automatización de workflows (bajo demanda) |
-| **Minecraft** | Servidor de juego (bajo demanda) |
+<div align="center">
 
-### 🔒 Seguridad aplicada
+| Categoria | Servicio | Funcion |
+| :---: | :--- | :--- |
+| 🔀 | **Nginx Proxy Manager** | Reverse proxy + certificado SSL wildcard |
+| 🛡️ | **Pi-hole** | DNS server + bloqueador de publicidad |
+| 📊 | **Homepage** | Dashboard centralizado |
+| ☁️ | **Nextcloud** | Nube privada (archivos, calendario, contactos) |
+| 🔑 | **Vaultwarden** | Gestor de contraseñas (compatible Bitwarden) |
+| 📈 | **Grafana** | Dashboards de monitorizacion |
+| 📈 | **Prometheus + Node Exporter** | Recolector y exportador de metricas |
+| ✅ | **Uptime Kuma** | Monitorizacion de disponibilidad |
+| 💰 | **Firefly III** | Gestion de finanzas personales |
+| 🎬 | **Plex** | Servidor multimedia |
+| 🎵 | **Navidrome** | Servidor de musica (Subsonic) |
+| 🌐 | **Speedtest Tracker** | Historial de velocidad de Internet |
+| ⬇️ | **qBittorrent** | Cliente de descargas |
+| 🏡 | **Home Assistant** | Domotica y automatizacion del hogar |
+| ⚡ | **n8n** | Automatizacion de workflows |
+| 🎮 | **Minecraft** | Servidor de juego |
 
-- Certificado SSL wildcard gestionado por NPM para todos los subdominios
-- Pi-hole como DNS local filtrando publicidad y telemetría a nivel de red
-- Vaultwarden como gestor de contraseñas centralizado
-- Acceso a servicios solo por subdominios HTTPS (no puertos expuestos directamente)
-- Prometheus restringido a red interna, sin acceso público
+</div>
 
-### 📊 Monitorización
+<br/>
 
-- **Prometheus** recolecta métricas del sistema vía Node Exporter
-- **Grafana** con dashboards importados:
-  - Node Exporter Full (ID 1860) — CPU, RAM, disco, red, temperatura
-  - Prometheus 2.0 Overview (ID 3662) — estado del propio Prometheus
-- **Uptime Kuma** monitoriza la disponibilidad de cada servicio
+<table>
+<tr>
+<td width="50%" valign="top">
 
----
+### 🔒 Seguridad
 
-## 📂 Estructura del repositorio
+- Certificado SSL wildcard via NPM
+- Pi-hole filtrando publicidad y telemetria
+- Vaultwarden como gestor de credenciales
+- Solo acceso HTTPS por subdominios
+- Prometheus restringido a red interna
 
-El contenido está dividido por entornos y tecnologías:
+</td>
+<td width="50%" valign="top">
 
-### 1. 🐧 Entorno Linux
-- Gestión avanzada de usuarios, grupos y permisos (chmod, chown, ACLs).
-- Configuración de servicios básicos (SSH, Apache/Nginx, FTP).
-- Monitorización de procesos y recursos del sistema.
-- Hardening básico y configuración del Firewall (UFW/iptables).
+### 📊 Monitorizacion
 
-### 2. 🪟 Windows Server & Active Directory
-- Despliegue de controladores de dominio (DC).
-- Creación y gestión de **GPOs** (Políticas de Grupo).
-- Administración de almacenamiento y cuotas.
+- **Prometheus** + Node Exporter para metricas
+- **Grafana** con dashboards:
+  - Node Exporter Full (ID 1860)
+  - Prometheus 2.0 Overview (ID 3662)
+- **Uptime Kuma** para disponibilidad
 
-### 3. ⚙️ Scripting y Automatización
-- **PowerShell:** Scripts para creación masiva de usuarios en AD, backups programados e informes del sistema.
-- **Bash:** Scripts de mantenimiento y auditoría en servidores Linux.
+</td>
+</tr>
+</table>
 
-### 4. 📦 Virtualización y Contenedores
-- Despliegue de máquinas virtuales con VirtualBox/VMware.
-- **Docker:** despliegue y gestión de +15 servicios en contenedores sobre UGREEN NAS.
-- Docker Compose para orquestación de stacks multi-contenedor.
-- Gestión de volúmenes, redes y actualizaciones de imágenes.
+<br/>
 
----
+## 📂 Contenido del repositorio
 
-## 🚀 Cómo utilizar este material
+<table>
+<tr>
+<td width="50%" valign="top">
 
-Si vas a probar alguno de mis scripts de PowerShell o Bash, **asegúrate de leer los comentarios internos del código**. Muchos scripts requieren ser ejecutados con privilegios de administrador (`Run as Administrator` en Windows o `sudo` en Linux) y podrían modificar la configuración de tu máquina si no se adaptan a tu entorno.
+### 🐧 Entorno Linux
+- Gestion de usuarios, grupos y permisos
+- Servicios: SSH, Apache/Nginx, FTP
+- Monitorizacion de procesos y recursos
+- Hardening y Firewall (UFW/iptables)
 
----
+### 🪟 Windows Server & AD
+- Controladores de dominio (DC)
+- GPOs (Politicas de Grupo)
+- Almacenamiento y cuotas
+
+</td>
+<td width="50%" valign="top">
+
+### ⚙️ Scripting y Automatizacion
+- **PowerShell:** Creacion masiva de usuarios AD, backups, informes
+- **Bash:** Mantenimiento y auditoria en Linux
+
+### 📦 Virtualizacion y Contenedores
+- VMs con VirtualBox/VMware
+- **Docker:** +15 servicios en UGREEN NAS
+- Docker Compose y gestion de volumenes
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+## 🚀 Como usar este material
+
+> **Importante:** Muchos scripts requieren privilegios de administrador (`Run as Administrator` en Windows o `sudo` en Linux). Lee siempre los comentarios internos del codigo antes de ejecutar.
+
+<br/>
 
 <div align="center">
 
 *"Un administrador que automatiza, es un administrador con tiempo para innovar."*
+
+<br/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:FCC624,100:FF6F00&height=100&section=footer" width="100%"/>
 
 **[⬅️ Volver a mi perfil principal](https://github.com/davidlpizano/davidlpizano)**
 
