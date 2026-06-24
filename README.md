@@ -2,11 +2,13 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=FCC624&height=200&section=header&text=SysAdmin%20Hub&fontSize=50&fontColor=ffffff&animation=twinkling&fontAlignY=40&desc=David%20Lopez%20%7C%20ASIR&descSize=20&descAlign=50&descAlignY=62&descColor=ffffff" alt="Sistemas Banner">
 
-**Configuración de servidores, virtualización, gestión de usuarios y automatización con scripting.**
+**Configuración de servidores, virtualización, gestión de usuarios, automatización con scripting y homelab en producción.**
 
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)](#)
 [![Windows Server](https://img.shields.io/badge/Windows_Server-0078D6?style=for-the-badge&logo=windows&logoColor=white)](#)
 [![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white)](#)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#)
+[![Nginx](https://img.shields.io/badge/Nginx_Proxy_Manager-009639?style=for-the-badge&logo=nginx&logoColor=white)](#)
 
 </div>
 
@@ -15,6 +17,102 @@
 ## 🎯 Sobre este repositorio
 
 Este espacio sirve como biblioteca de mis prácticas, guías y **scripts de automatización** relacionados con la Administración de Sistemas Operativos. Es parte de mi evolución como técnico **ASIR** y futuro perfil enfocado en Ciberseguridad.
+
+Aquí demuestro mi capacidad para levantar infraestructuras desde cero, interconectar servicios (Active Directory, DNS, File Servers) y optimizar tareas repetitivas mediante **PowerShell** y **Bash**.
+
+Además, mantengo un **homelab en producción** sobre un NAS UGREEN con más de 15 servicios Docker auto-alojados, accesibles por subdominios con SSL y monitorizados en tiempo real.
+
+---
+
+## 🏠 Homelab — Infraestructura real en producción
+
+Mi homelab corre sobre un **UGREEN NAS** con Docker, gestionado a través de la interfaz nativa del NAS. Todos los servicios están desplegados como contenedores Docker con persistencia de datos en volúmenes.
+
+### 🌐 Arquitectura de red
+
+```
+Internet
+    │
+    ▼
+┌─────────────────────┐
+│   Router / Firewall  │
+│   192.168.1.1        │
+└────────┬────────────┘
+         │
+         ▼
+┌─────────────────────────────────────────────┐
+│          UGREEN NAS — 192.168.1.3           │
+│                                             │
+│  ┌─────────────────────────────────────┐    │
+│  │  Nginx Proxy Manager (NPM)         │    │
+│  │  Wildcard SSL: *.dlplab.es          │    │
+│  │  Reverse proxy → todos los servicios│    │
+│  └─────────────────────────────────────┘    │
+│                                             │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
+│  │ Pi-hole  │ │ Grafana  │ │ Prometheus│   │
+│  │   DNS    │ │ Dashboards│ │ Métricas │   │
+│  └──────────┘ └──────────┘ └──────────┘    │
+│                                             │
+│  ┌──────────┐ ┌──────────┐ ┌───────────┐   │
+│  │Nextcloud │ │Vaultwarden│ │Uptime Kuma│  │
+│  │  Cloud   │ │Contraseñas│ │Monitoreo  │  │
+│  └──────────┘ └──────────┘ └───────────┘   │
+│                                             │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
+│  │Firefly III│ │  Plex   │ │Navidrome │    │
+│  │ Finanzas │ │  Media   │ │  Música  │    │
+│  └──────────┘ └──────────┘ └──────────┘    │
+│                                             │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
+│  │Homepage  │ │Speedtest │ │qBittorrent│   │
+│  │Dashboard │ │ Tracker  │ │ Descargas│    │
+│  └──────────┘ └──────────┘ └──────────┘    │
+│                                             │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐    │
+│  │Home Asst.│ │   n8n    │ │Minecraft │    │
+│  │  Domótica│ │Automatiz.│ │  Server  │    │
+│  └──────────┘ └──────────┘ └──────────┘    │
+└─────────────────────────────────────────────┘
+```
+
+### 📋 Stack de servicios
+
+| Servicio | Función | Acceso |
+| :--- | :--- | :--- |
+| **Nginx Proxy Manager** | Reverse proxy + SSL wildcard `*.dlplab.es` | `npm.dlplab.es` |
+| **Pi-hole** | DNS server + bloqueador de publicidad para toda la red | `pihole.dlplab.es` |
+| **Homepage** | Dashboard centralizado de todos los servicios | `home.dlplab.es` |
+| **Nextcloud** | Nube privada (archivos, calendario, contactos) | `cloud.dlplab.es` |
+| **Vaultwarden** | Gestor de contraseñas (compatible Bitwarden) | `vault.dlplab.es` |
+| **Grafana** | Dashboards de monitorización (Node Exporter, Prometheus) | `grafana.dlplab.es` |
+| **Prometheus** | Recolector de métricas del sistema | `192.168.1.3:9090` |
+| **Node Exporter** | Exportador de métricas del hardware/OS | — |
+| **Uptime Kuma** | Monitorización de disponibilidad de servicios | `uptime.dlplab.es` |
+| **Firefly III** | Gestión de finanzas personales | `firefly.dlplab.es` |
+| **Plex** | Servidor multimedia (películas, series) | `plex.dlplab.es` |
+| **Navidrome** | Servidor de música (compatible Subsonic) | `music.dlplab.es` |
+| **Speedtest Tracker** | Historial de velocidad de Internet | `speedtest.dlplab.es` |
+| **qBittorrent** | Cliente de descargas | `qbit.dlplab.es` |
+| **Home Assistant** | Domótica y automatización del hogar | `ha.dlplab.es` |
+| **n8n** | Automatización de workflows (bajo demanda) | `n8n.dlplab.es` |
+| **Minecraft** | Servidor de juego (bajo demanda) | — |
+
+### 🔒 Seguridad aplicada
+
+- Certificado SSL wildcard para `*.dlplab.es` gestionado por NPM
+- Pi-hole como DNS local filtrando publicidad y telemetría a nivel de red
+- Vaultwarden como gestor de contraseñas centralizado
+- Acceso a servicios solo por subdominios HTTPS (no puertos expuestos directamente)
+- Prometheus sin acceso público (solo IP interna, sin autenticación externa)
+
+### 📊 Monitorización
+
+- **Prometheus** recolecta métricas del sistema vía Node Exporter
+- **Grafana** con dashboards importados:
+  - Node Exporter Full (ID 1860) — CPU, RAM, disco, red, temperatura
+  - Prometheus 2.0 Overview (ID 3662) — estado del propio Prometheus
+- **Uptime Kuma** monitoriza la disponibilidad de cada servicio
 
 ---
 
@@ -37,9 +135,11 @@ El contenido está dividido por entornos y tecnologías:
 - **PowerShell:** Scripts para creación masiva de usuarios en AD, backups programados e informes del sistema.
 - **Bash:** Scripts de mantenimiento y auditoría en servidores Linux.
 
-### 4. 📦 Virtualización
+### 4. 📦 Virtualización y Contenedores
 - Despliegue de máquinas virtuales con VirtualBox/VMware.
-- Primeros contactos con contenedores y entornos aislados.
+- **Docker:** despliegue y gestión de +15 servicios en contenedores sobre UGREEN NAS.
+- Docker Compose para orquestación de stacks multi-contenedor.
+- Gestión de volúmenes, redes y actualizaciones de imágenes.
 
 ---
 
@@ -51,7 +151,7 @@ Si vas a probar alguno de mis scripts de PowerShell o Bash, **asegúrate de leer
 
 <div align="center">
 
-*"Un sistema que se rompe bajo control, es un servicio que no falla ante el usuario."*
+*"Un administrador que automatiza, es un administrador con tiempo para innovar."*
 
 **[⬅️ Volver a mi perfil principal](https://github.com/davidlpizano/davidlpizano)**
 
